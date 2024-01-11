@@ -30,7 +30,20 @@ jobs:
           context: .
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.appName }}:latest
-          
+      - name: Executing Kubectl command on Kubernetes Server Remotely
+        uses: appleboy/ssh-action@v0.1.10
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          port: ${{ secrets.PORT }}
+          script: |
+            git clone https://github.com/gsorrent/DevOps-Capstone-Project.git
+            cd DecOps-Capstone-Project
+            helm list -A
+            helm install webapp-deploy ./webapp
+            helm list -A
+            kubectl get all
 
 
 
