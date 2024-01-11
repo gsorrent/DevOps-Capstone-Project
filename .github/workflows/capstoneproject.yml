@@ -41,7 +41,7 @@ jobs:
             git clone https://github.com/gsorrent/DevOps-Capstone-Project.git
             cd DecOps-Capstone-Project
             helm list -A
-            helm install webapp-deploy ./webapp
+            helm install webapp-deploy123 ./webapp
             helm list -A
             kubectl get all
 
